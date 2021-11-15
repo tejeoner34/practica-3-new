@@ -1,0 +1,56 @@
+.card {
+    border: 1px solid rgba(27,31,35,0.15)
+    ;
+    width: 90%;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: white;
+}
+
+.card__title{
+    color: #0366d6;
+}
+
+.card__main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 50%;
+}
+
+.card__main-info p {
+    font-weight: bold;
+}
+
+
+
+.card__main-info__icon{
+    display: flex;
+    align-items: center;
+    gap: 1rem
+;
+}
+
+.card__date-info{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.todo-icon {
+    width: 25px;
+    height: 25px;
+    padding-top: 12px;
+}
+
+
+.main__cards-date {
+    display: flex;
+    justify-content: center;
+}

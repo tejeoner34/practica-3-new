@@ -1,0 +1,33 @@
+
+
+.main{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.task-container__container{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    height: fit-content;
+}
+
+.subheader{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.subheader__info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.subheader__info p{
+    opacity: 0.7;
+}
