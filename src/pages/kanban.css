@@ -31,3 +31,19 @@
 .subheader__info p{
     opacity: 0.7;
 }
+
+.fontAwesome {
+    font-family: Helvetica, 'FontAwesome', sans-serif;
+  }
+
+.subheader__filter{
+    width: 30%;
+}
+
+.subheader__filter input{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    opacity: 0.7;
+}

@@ -26,7 +26,7 @@ function Card(props) {
                     <div className='card__main-info__icon'>
                         <MdHighlightOff color='#22863a' />
 
-                        <p onClick={handleStatus}>{props.task.title}</p>
+                        <p className='card__title' onClick={handleStatus}>{props.task.title}</p>
                     </div>
                     <div onClick={handleClick}>
                         <MdDelete fontSize='1.5rem' ></MdDelete>

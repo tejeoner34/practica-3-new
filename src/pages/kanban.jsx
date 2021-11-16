@@ -133,6 +133,16 @@ function KanbanPage() {
         })
     }
 
+    const filterData = (e)=>{
+
+        const item = e.target.value;
+        console.log(item);
+        const localData = JSON.parse(localStorage.getItem('cardData'));
+        const filteredData = localData.filter(e=>e.title.toLowerCase().includes(item))
+        updateData(filteredData);
+
+    }
+
 
     return (
 
@@ -148,7 +158,7 @@ function KanbanPage() {
                     </div>
                 </div>
                 <div className='subheader__filter'>
-                    <input type="text" />
+                    <input onChange={filterData} type="search" placeholder="🔎 Filter Card" />
                 </div>
             </div>
 
