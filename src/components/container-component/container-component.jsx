@@ -6,6 +6,8 @@ import Card from '../card/card';
 
 
 
+
+
 function TaskContainer(props) {
 
 
@@ -42,6 +44,9 @@ function TaskContainer(props) {
         props.onHandleStatus(childata);
     }
 
+    const funcionDrag = (datos)=>{
+        props.handleDrag(datos)
+    }
     
 
 
@@ -70,7 +75,7 @@ function TaskContainer(props) {
 
 
 
-                {props.task?.map((e, index) => <Card task={e} index={index} onDelete={handleDetele} onHandleStatus={handleStatus} ></Card>)}
+                {props.task?.map((e, index) => <Card key={index}  task={e} funcionDragger={funcionDrag} index={index} onDelete={handleDetele} onHandleStatus={handleStatus} updateData={props.updateData}  ></Card>)}
 
             </div>
         )
@@ -96,7 +101,7 @@ function TaskContainer(props) {
 
 
 
-                {props.task?.map((e, index) => <Card task={e} index={index} onDelete={handleDetele} onHandleStatus={handleStatus} ></Card>)}
+                {props.task?.map((e, index) => <Card key={index} task={e} index={index} funcionDragger={funcionDrag} onDelete={handleDetele} onHandleStatus={handleStatus} ></Card>)}
 
             </div>
         )

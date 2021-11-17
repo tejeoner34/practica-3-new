@@ -74,7 +74,6 @@ function KanbanPage() {
         updateDone(doneArray);
         let today = new Date();
         let date = today.getDate() + ' ' + today.toLocaleString('default', { month: 'short' });
-        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let finalTime = date;
         localStorage.setItem('lastUpdate', finalTime);
         let localStorageTime = localStorage.getItem('lastUpdate');
@@ -83,7 +82,6 @@ function KanbanPage() {
     }
 
     const onDelete = (childata) => {
-        let emptyArray = [];
         let storageLocal = JSON.parse(localStorage.getItem('cardData'));
         storageLocal?.forEach((e, index) => {
             if (e.id === childata) {
@@ -95,7 +93,6 @@ function KanbanPage() {
     }
 
     const onDeleteAllData = () => {
-        let emptyArray = [];
         let storageLocal = JSON.parse(localStorage.getItem('cardData'));
 
         storageLocal?.forEach((e, index) => {
@@ -110,7 +107,6 @@ function KanbanPage() {
     }
 
     const onHandleStatus = (childata) => {
-        let emptyArray = [];
         let storageLocal = JSON.parse(localStorage.getItem('cardData'));
         storageLocal?.forEach(e => {
             if (childata.state === 'To Do' && e.id === childata.id) {
@@ -143,6 +139,12 @@ function KanbanPage() {
 
     }
 
+    const gestionDrag = (datos)=>{
+        updateData(datos);
+
+        console.log(datos)
+    }
+
 
     return (
 
@@ -163,9 +165,9 @@ function KanbanPage() {
             </div>
 
             <div className='task-container__container'>
-                <TaskContainer name={toDoTitle} task={toDo} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData}  ></TaskContainer>
-                <TaskContainer name={inProcessTitle} task={inProcess} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData}></TaskContainer>
-                <TaskContainer name={doneTitle} task={done} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData}></TaskContainer>
+                <TaskContainer name={toDoTitle} key='1' task={toDo} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData} handleDrag={gestionDrag}  ></TaskContainer>
+                <TaskContainer name={inProcessTitle} key='2' task={inProcess} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData} handleDrag={gestionDrag} ></TaskContainer>
+                <TaskContainer name={doneTitle} key='3' task={done} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData} handleDrag={gestionDrag} ></TaskContainer>
             </div>
         </div>
     )

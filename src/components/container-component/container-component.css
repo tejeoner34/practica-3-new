@@ -4,8 +4,8 @@
     border-radius: 5px;
     height: 75vh;
     width: 30%;
-    overflow: auto;
     display: flex;
+    overflow-y: scroll;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem

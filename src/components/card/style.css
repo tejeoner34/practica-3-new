@@ -7,6 +7,17 @@
     background-color: white;
 }
 
+.cardAboluste {
+    border: 1px solid rgba(27,31,35,0.15)
+    ;
+    width: 200px;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: white;
+    position: absolute;
+    top: 150
+}
+
 .card__title{
     color: #0366d6;
 }
