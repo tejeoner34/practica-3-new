@@ -3,9 +3,9 @@ import './style.css'
 
 import React from 'react';
 import { MdCheckCircleOutline } from "react-icons/md";
-import { MdHighlightOff } from "react-icons/md";
+import { MdOutlinePending } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import Draggable from 'react-draggable';
+import Draggable from 'react-draggable'; 
 import { useState } from 'react';
 
 
@@ -13,8 +13,8 @@ import { useState } from 'react';
 function Card(props) {
 
     const [isDrag, setIsDrag] = useState(false);
-    
 
+    const nodeRef = React.useRef(null);
 
     const handleClick = (e)=>{
         props.onDelete(props.task.id);
@@ -25,70 +25,63 @@ function Card(props) {
     }
 
     const handleonMouse = (e)=>{
-        setIsDrag(true)
-        console.log(e)
-    }
-
-    const handleStop = (e)=>{
-     setIsDrag(!isDrag)
+        setIsDrag(!isDrag);
+        props.isDragging(false);
+        
     }
 
     const handleEvent = (e) => {
         if(e.clientX < (window.innerWidth/3)*2 && e.clientX > window.innerWidth/3 ){
             const localData = JSON.parse(localStorage.getItem('cardData'))
             localData.forEach(e=> e.id === props.task.id? e.state = 'In Process':'');
-            let array = [...localData]
+            // let array = [...localData]
             localStorage.setItem('cardData', JSON.stringify(localData))
-            console.log(array);
-            props.funcionDragger(array);
-            // props.updateData(array);
-        }
+            window.location.reload();
 
-        if(e.clientX > (window.innerWidth/3)*2){
+            // props.funcionDragger(array);
+            // props.updateData(array);
+        }else if(e.clientX > (window.innerWidth/3)*2){
             const localData = JSON.parse(localStorage.getItem('cardData'))
             localData.forEach(e=> e.id === props.task.id? e.state = 'Done':'');
-            let array = [...localData]
+            // let array = [...localData]
             localStorage.setItem('cardData', JSON.stringify(localData))
-            console.log(array);
-            props.funcionDragger(array);
-            // props.updateData(array);
-        }
+            window.location.reload();
 
-        if(e.clientX < (window.innerWidth/3)){
+            // props.funcionDragger(array);
+            // props.updateData(array);
+        }else if(e.clientX < (window.innerWidth/3)){
             const localData = JSON.parse(localStorage.getItem('cardData'))
             localData.forEach(e=> e.id === props.task.id? e.state = 'To Do':'');
-            let array = [...localData]
+            // let array = [...localData]
             localStorage.setItem('cardData', JSON.stringify(localData))
-            console.log(array);
-            props.funcionDragger(array);
+            window.location.reload();
+
+            // props.funcionDragger(array);
             // props.updateData(array);
         }
 
         
-
-
-
       }
-
 
     if (props.task.state === 'To Do' || props.task.state === 'In Process') {
 
         return (
-            <Draggable 
-            onStop={handleEvent}
+            <Draggable
+            nodeRef={nodeRef}
             onStart={handleonMouse}
-
-            // onStop={handleStop}
+            onStop={(handleEvent)} 
+            
             >
-            <div className={isDrag? 'cardAboluste' : 'card'}>
+            {/* <div className='card'> */}
+            <div ref={nodeRef} className={isDrag?'cardAboluste':'card'} >
                 <div className="card__main-info">
 
-                    <div className='card__main-info__icon'>
-                        <MdHighlightOff color='#22863a' />
+                    <div className='card__main-info__icon' >
+                        <MdOutlinePending color='#22863a' />
 
-                        <p className='card__title' onClick={handleStatus}>{props.task.title}</p>
+                        <p className='card__title' title="Click to change State" onClick={handleStatus}>{props.task.title}</p>
                     </div>
-                    <div onClick={handleClick}>
+                    <div className='card__delete' title='Delete' onClick={handleClick}>
                         <MdDelete fontSize='1.5rem' ></MdDelete>
                     </div>
                 </div>
@@ -99,26 +92,23 @@ function Card(props) {
             </Draggable>
         )
     } else {
-
         return (
+            <Draggable
+            nodeRef={nodeRef}
 
-            
-            <Draggable 
-            onStop={handleEvent}
-            onDrag={handleonMouse}
-
-            // onStop={handleStop}
+            onStart={handleonMouse}
+            onStop={handleEvent} 
             >
-            <div className={isDrag? 'cardAboluste' : 'card'}>
+            <div ref={nodeRef} className='card'>
                 <div className="card__main-info">
 
-                    <div className='card__main-info__icon'>
+                    <div className='card__main-info__icon' >
                         <MdCheckCircleOutline color='#cb2431' />
 
 
-                        <p className='card__title' onClick={handleStatus}>{props.task.title}</p>
+                        <p className='card__title' title="Click to change State" onClick={handleStatus}>{props.task.title}</p>
                     </div>
-                    <div onClick={handleClick}>
+                    <div className='card__delete' title="Delete" onClick={handleClick}>
                         <MdDelete fontSize='1.5rem' ></MdDelete>
                     </div>
                 </div>
@@ -126,15 +116,13 @@ function Card(props) {
                 <p>#{props.task.id} Created on {props.task.date} </p>
                 </div>
             </div>
-
             </Draggable>
 
 
+
+
         )
-
-
     }
-
 }
 
 export default Card;

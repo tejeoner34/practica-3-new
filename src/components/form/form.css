@@ -13,8 +13,6 @@
     border-radius: 10px;
 }
 
-
-
 .form__button-container{
     display: flex;
     gap: 0.5rem;
@@ -28,22 +26,18 @@
 .form__cancel-button{
     width: 50%;
     background-color:  #fafbfc;
-    border: 1px solid rgba(27,31,35,0.15)
-    ;
+    border: 1px solid rgba(27,31,35,0.15);
 }
 
 .form__add-button{
     background-color: #2ea44f;
     color: white;
     width: 50%;
-    
-
 }
+
 .form__add-button-opacity{
     background-color: #2ea44f;
     opacity: 0.7;
     color: white;
-    width: 50%;
-
-    
+    width: 50%;    
 }

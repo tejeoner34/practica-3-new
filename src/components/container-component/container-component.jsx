@@ -4,13 +4,10 @@ import './container-component.css'
 import Card from '../card/card';
 
 
-
-
-
-
 function TaskContainer(props) {
 
 
+    const [isOver, setIsOver] = useState(true);
 
     const handleSubmit = (e) => {
         let counterLocal = JSON.parse(localStorage.getItem('counter'));
@@ -38,58 +35,54 @@ function TaskContainer(props) {
 
     const handleDetele = (childata) => {
         props.onDelete(childata);
-    }
+    };
 
     const handleStatus = (childata) => {
         props.onHandleStatus(childata);
-    }
+    };
 
-    const funcionDrag = (datos)=>{
+    const funcionDrag = (datos) => {
         props.handleDrag(datos)
-    }
-    
+    };
 
-
+    const isDragging = (childata) => {
+        setIsOver(childata);
+    };
 
 
     if (props.name === 'Done') {
         return (
-            <div className='task-container'>
+            <div className={isOver ? 'task-container' : 'task-containerNoOver'}>
                 <div className='task-container__top-bar'>
                     <div className='task-container__task-counter'>
                         <p>{props.task?.length}</p>
                     </div>
                     <h4>{props.name}</h4>
                     <div className='task-container__button-div'>
-                    <button className='task-container__add-button' onClick={(e) => setShow(!show)}>+</button>
-                    <span onClick={props.onDeleteAllData} className='task-container__clear-button'>Clear All</span>
+                        <button title='Display task creator' className='task-container__add-button' onClick={(e) => setShow(!show)}>+</button>
+                        <span onClick={props.onDeleteAllData} className='task-container__clear-button'>Clear All</span>
                     </div>
                 </div>
 
                 {
                     show ? (
                         <Form handleSubmit={handleSubmit} setShow={setShow} ></Form>
-
                     ) : null
                 }
-
-
-
-                {props.task?.map((e, index) => <Card key={index}  task={e} funcionDragger={funcionDrag} index={index} onDelete={handleDetele} onHandleStatus={handleStatus} updateData={props.updateData}  ></Card>)}
-
+                <div className={isOver ? 'task-container__cards' : 'task-container__cards--noOver'}>
+                    {props.task?.map((e, index) => <Card key={index} task={e} isDragging={isDragging} funcionDragger={funcionDrag} index={index} onDelete={handleDetele} onHandleStatus={handleStatus} updateData={props.updateData}  ></Card>)}
+                </div>
             </div>
         )
     } else {
-
-
         return (
-            <div className='task-container'>
+            <div className={isOver ? 'task-container' : 'task-containerNoOver'}>
                 <div className='task-container__top-bar'>
                     <div className='task-container__task-counter'>
                         <p>{props.task?.length}</p>
                     </div>
                     <h4>{props.name}</h4>
-                    <button className='task-container__add-button' onClick={(e) => setShow(!show)}>+</button>
+                    <button title='Display task creator' className='task-container__add-button' onClick={(e) => setShow(!show)}>+</button>
                 </div>
 
                 {
@@ -99,10 +92,11 @@ function TaskContainer(props) {
                     ) : null
                 }
 
+                <div className={isOver ? 'task-container__cards' : 'task-container__cards--noOver'}>
 
 
-                {props.task?.map((e, index) => <Card key={index} task={e} index={index} funcionDragger={funcionDrag} onDelete={handleDetele} onHandleStatus={handleStatus} ></Card>)}
-
+                    {props.task?.map((e, index) => <Card key={index} isDragging={isDragging} task={e} index={index} funcionDragger={funcionDrag} onDelete={handleDetele} onHandleStatus={handleStatus} ></Card>)}
+                </div>
             </div>
         )
     }

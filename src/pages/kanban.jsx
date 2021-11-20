@@ -17,11 +17,6 @@ function KanbanPage() {
     let inprocessArray = [];
     let doneArray = [];
 
-
-
-
-
-
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem('cardData'));
         const localStorageTime = localStorage.getItem('lastUpdate');
@@ -44,13 +39,11 @@ function KanbanPage() {
         updateDone(oldDone => oldDone.concat(doneArray));
         setLastUpdate(localStorageTime)
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-
 
     const updateData = (childata) => {
 
-        console.log(childata);
         childata?.forEach(e => {
 
             if (e.state === toDoTitle) {
@@ -129,20 +122,18 @@ function KanbanPage() {
         })
     }
 
-    const filterData = (e)=>{
+    const filterData = (e) => {
 
         const item = e.target.value;
         console.log(item);
         const localData = JSON.parse(localStorage.getItem('cardData'));
-        const filteredData = localData.filter(e=>e.title.toLowerCase().includes(item))
+        const filteredData = localData.filter(e => e.title.toLowerCase().includes(item))
         updateData(filteredData);
 
     }
 
-    const gestionDrag = (datos)=>{
+    const gestionDrag = (datos) => {
         updateData(datos);
-
-        console.log(datos)
     }
 
 
@@ -153,7 +144,7 @@ function KanbanPage() {
             <div className='subheader'>
                 <div className='subheader__info'>
                     <div>
-                        <b>Version 1</b>
+                        <b>Version 1.0</b>
                     </div>
                     <div className='subheader__last-upadte'>
                         <p>Updated on {lastUpdate}</p>
@@ -163,11 +154,21 @@ function KanbanPage() {
                     <input onChange={filterData} type="search" placeholder="🔎 Filter Card" />
                 </div>
             </div>
-
             <div className='task-container__container'>
-                <TaskContainer name={toDoTitle} key='1' task={toDo} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData} handleDrag={gestionDrag}  ></TaskContainer>
-                <TaskContainer name={inProcessTitle} key='2' task={inProcess} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData} handleDrag={gestionDrag} ></TaskContainer>
-                <TaskContainer name={doneTitle} key='3' task={done} updateData={updateData} onDelete={onDelete} onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData} handleDrag={gestionDrag} ></TaskContainer>
+                <TaskContainer name={toDoTitle} key='1' task={toDo}
+                    updateData={updateData} onDelete={onDelete}
+                    onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData}
+                    handleDrag={gestionDrag}  ></TaskContainer>
+
+                <TaskContainer name={inProcessTitle} key='2'
+                    task={inProcess} updateData={updateData} onDelete={onDelete}
+                    onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData}
+                    handleDrag={gestionDrag} ></TaskContainer>
+                    
+                <TaskContainer name={doneTitle} key='3'
+                    task={done} updateData={updateData} onDelete={onDelete}
+                    onHandleStatus={onHandleStatus} onDeleteAllData={onDeleteAllData}
+                    handleDrag={gestionDrag} ></TaskContainer>
             </div>
         </div>
     )

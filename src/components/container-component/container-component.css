@@ -5,11 +5,20 @@
     height: 75vh;
     width: 30%;
     display: flex;
-    overflow-y: scroll;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem
-;
+    gap: 0.5rem;
+}
+
+.task-containerNoOver{
+    background-color: #f6f8fa;
+    border-radius: 5px;
+    height: 75vh;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .task-container__top-bar{
@@ -18,6 +27,26 @@
     justify-content: space-around;
     align-items: center;
     height: 50px;
+}
+
+.task-container__cards{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-y: auto;
+
+}
+
+.task-container__cards--noOver{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .task-container__task-counter{
