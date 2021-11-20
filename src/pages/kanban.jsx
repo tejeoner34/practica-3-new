@@ -1,6 +1,6 @@
 import './kanban.css'
 import TaskContainer from "../components/container-component/container-component";
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import { useEffect } from 'react';
 
 function KanbanPage() {
