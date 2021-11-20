@@ -2,7 +2,7 @@
   "name": "practica3-new",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://tejeoner34.github.io/practica-3-new",
+  "homepage": "https://tejeoner34.github.io/practica-3-new",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
