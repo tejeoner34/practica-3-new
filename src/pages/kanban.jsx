@@ -124,8 +124,7 @@ function KanbanPage() {
 
     const filterData = (e) => {
 
-        const item = e.target.value;
-        console.log(item);
+        const item = e.target.value.toLowerCase();
         const localData = JSON.parse(localStorage.getItem('cardData'));
         const filteredData = localData.filter(e => e.title.toLowerCase().includes(item))
         updateData(filteredData);
