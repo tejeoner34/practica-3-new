@@ -70,6 +70,7 @@ function Card(props) {
             nodeRef={nodeRef}
             onStart={handleonMouse}
             onStop={(handleEvent)} 
+            cancel='.card__title'
             
             >
             {/* <div className='card'> */}

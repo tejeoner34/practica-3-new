@@ -12,7 +12,7 @@
     display: flex;
     gap: 2rem;
     justify-content: center;
-    height: fit-content;
+    height: 70vh;
 }
 
 .subheader{
@@ -46,4 +46,32 @@
     border-radius: 5px;
     border: 1px solid darkgray;
     opacity: 0.7;
+}
+
+
+@media (max-width: 600px){
+
+    .main{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-container__container{
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .subheader{
+        width: 100%;
+    }
+
+    .subheader__filter{
+        width: 50%;
+    }
+
+    .subheader__filter input{
+        padding: 1.2rem;
+    }
+
 }
